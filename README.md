@@ -222,25 +222,17 @@ Devolvé únicamente el objeto estructurado pedido (intencion, urgencia, requier
 
 ## 7. Capturas
 
-![Hoja de tickets con el caso registrado](capturas/06-hoja-tickets.png)
-
 | Captura | Archivo |
 |---|---|
-| Canvas del workflow principal | `capturas/01-canvas-principal.png` |
-| Canvas del workflow de ingesta | `capturas/02-canvas-ingesta.png` |
-| Tabla `documents` en Supabase | `capturas/03-supabase-documents.png` |
-| Ejecución exitosa: consulta resuelta con RAG | `capturas/04-ejecucion-consulta.png` |
-| Ejecución exitosa: reclamo clasificado y escalado | `capturas/05-ejecucion-reclamo.png` |
-| Hoja de tickets con el caso registrado | `capturas/06-hoja-tickets.png` |
-| Mail de aviso al equipo | `capturas/07-mail-equipo.png` |
-| Camino de contingencia ante una falla | `capturas/08-contingencia.png` |
-| Workflow de alertas de error | `capturas/09-alertas-error.png` |
-
-![Canvas del workflow principal](capturas/01-canvas-principal.png)
-
-![Ejecución exitosa: consulta](capturas/04-ejecucion-consulta.png)
-
-![Ejecución: reclamo escalado](capturas/05-ejecucion-reclamo.png)
+| Canvas del workflow principal | ![Canvas del workflow principal](capturas/01-canvas-principal.png)|
+| Canvas del workflow de ingesta |![Canvas del workflow de ingesta](capturas/02-canvas-ingesta.png) |
+| Tabla `documents` en Supabase | ![Tabla documents en Supabase](capturas/03-supabase-documents.png) |
+| Ejecución exitosa: consulta resuelta con RAG | ![Ejecución exitosa: consulta](capturas/04-ejecucion-consulta.png) |
+| Ejecución exitosa: reclamo clasificado y escalado | ![Ejecución: reclamo escalado](capturas/05-ejecucion-reclamo.png) |
+| Hoja de tickets con el caso registrado |![Hoja de tickets con el caso registrado](capturas/06-hoja-tickets.png) |
+| Mail de aviso al equipo | ![Mail de aviso al equipo](capturas/07-mail-equipo.png) |
+| Camino de contingencia ante una falla | ![Camino de contingencia ante una falla](capturas/08-contingencia.png) |
+| Workflow de alertas de error | ![Workflow de alertas de error](capturas/09-alertas-error.png)|
 
 ---
 
