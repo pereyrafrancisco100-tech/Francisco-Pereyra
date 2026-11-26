@@ -1,0 +1,67 @@
+{
+  "name": "Pizzeria - Alertas de error",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.errorTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "59ff4e18-44e7-4d97-a0bd-259f22e67832",
+      "name": "Error Trigger"
+    },
+    {
+      "parameters": {
+        "sendTo": "pereyrafrancisco100@gmail.com",
+        "subject": "=⚠ Falló el workflow: {{ $json.workflow.name }}",
+        "message": "=El workflow falló.  Nodo: {{ $json.execution.lastNodeExecuted }} Error: {{ $json.execution.error.message }} Ejecución: {{ $json.execution.url }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        224,
+        0
+      ],
+      "id": "ea2c639a-8c60-4dc4-8399-42a01fe350cd",
+      "name": "Send a message",
+      "webhookId": "2cd5813e-a43d-4c88-8081-789172611e22",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "C2DRU51Ihva7HVpO",
+          "name": "Gmail account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Error Trigger": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": true
+  },
+  "versionId": "a6272f8b-6e73-49a1-a444-7f6f8aa35203",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "081b6ad2bd5297f10f998b76d0846c54182ecc27ca12d3a669fae9ef6b117091"
+  },
+  "nodeGroups": [],
+  "id": "ihnwH3PXi3XIS46n",
+  "tags": []
+}
