@@ -1,0 +1,185 @@
+{
+  "name": "Pizzeria - Ingesta",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -192,
+        0
+      ],
+      "id": "c86f7b87-e435-41f5-93bb-502d1bbb1669",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "tableName": {
+          "__rl": true,
+          "value": "documents",
+          "mode": "list",
+          "cachedResultName": "documents"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreSupabase",
+      "typeVersion": 1.4,
+      "position": [
+        400,
+        0
+      ],
+      "id": "f59a28a9-adfd-4e3d-aa85-43a09b7a4ccd",
+      "name": "Supabase Vector Store",
+      "credentials": {
+        "supabaseApi": {
+          "id": "0ncnz001iD1Lisya",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.embeddingsGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        320,
+        176
+      ],
+      "id": "55eef5ff-142b-406a-929d-664bb133dfa4",
+      "name": "Embeddings Google Gemini",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "H307upwVwY1M0lRe",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "81b33afb-79bb-47d7-9bc9-acc2225dbb29",
+              "name": "text",
+              "value": "PIZZERÍA DON MARCOS - INFORMACIÓN PARA CLIENTES  1. DATOS GENERALES Pizzería Don Marcos es una pizzería de barrio con venta en el local y delivery. Dirección: Av. Libertad 1234. Teléfono y WhatsApp de atención humana: 11-5555-0123.  2. HORARIOS Martes a jueves: de 19:00 a 23:30. Viernes y sábados: de 19:00 a 00:30. Domingos: de 19:00 a 23:00. Los lunes permanecemos cerrados. En feriados abrimos en el horario de domingo.  3. MENÚ Y PRECIOS (pizzas grandes, 8 porciones) Muzzarella: $9.500 Napolitana: $11.000 Fugazzeta: $11.500 Jamón y morrones: $12.000 Cuatro quesos: $12.500 Pizza vegetariana (sin carne): $11.800 Media pizza: la mitad del precio de la pizza grande. Empanadas (carne, jamón y queso, humita): $1.600 cada una. Docena: $18.000. Bebidas: gaseosa 1,5 L $3.500, cerveza 1 L $4.800, agua mineral 500 ml $1.500. Los precios pueden actualizarse sin previo aviso.  4. DELIVERY Llegamos a Centro, Barrio Norte y Villa Sur. No llegamos a otras zonas. Costo de envío: $1.500 en Centro, $2.000 en Barrio Norte y Villa Sur. Envío gratis en pedidos mayores a $25.000. Pedido mínimo para delivery: $8.000. Tiempo estimado de entrega: entre 40 y 60 minutos. En noches de mucha demanda puede demorar hasta 20 minutos más.  5. MEDIOS DE PAGO Efectivo, transferencia bancaria, Mercado Pago y tarjetas de débito y crédito (solo en el local). Para pagar con efectivo en delivery, avisar con cuánto se paga para llevar el cambio. En delivery no aceptamos tarjetas.  6. RETIRO EN EL LOCAL Se puede retirar en el horario de atención. Tiempo de preparación: unos 25 minutos. Los pedidos se hacen por teléfono o WhatsApp con atención humana.  7. CAMBIOS, RECLAMOS Y REEMBOLSOS Si el pedido llegó con un error, incompleto o en mal estado, el cliente debe avisar dentro de los 30 minutos posteriores a la entrega, enviando una foto. El equipo evalúa cada caso y puede reponer el producto o devolver el dinero. Los reclamos los resuelve siempre una persona del equipo.  8. ALERGIAS Y OPCIONES ESPECIALES Tenemos pizza vegetariana. No contamos con opciones sin gluten. Para consultas sobre alergias o ingredientes específicos, comunicarse con atención humana.  9. LO QUE EL ASISTENTE NO HACE El asistente virtual no toma pedidos, no confirma pagos ni modifica reservas. Para eso, comunicarse con atención humana.",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        16,
+        0
+      ],
+      "id": "261fab35-0a1d-4256-ac97-988f40180dab",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "jsonMode": "expressionData",
+        "jsonData": "={{ $json.text }}",
+        "textSplittingMode": "custom",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+      "typeVersion": 1.1,
+      "position": [
+        576,
+        192
+      ],
+      "id": "574ceb30-6018-499c-b886-c88894db6090",
+      "name": "Default Data Loader"
+    },
+    {
+      "parameters": {
+        "chunkSize": 500,
+        "chunkOverlap": 50,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
+      "typeVersion": 1,
+      "position": [
+        560,
+        352
+      ],
+      "id": "427a00f3-faff-4049-bc18-48ed84dffc1c",
+      "name": "Recursive Character Text Splitter"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings Google Gemini": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Supabase Vector Store",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Supabase Vector Store",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Default Data Loader": {
+      "ai_document": [
+        [
+          {
+            "node": "Supabase Vector Store",
+            "type": "ai_document",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Recursive Character Text Splitter": {
+      "ai_textSplitter": [
+        [
+          {
+            "node": "Default Data Loader",
+            "type": "ai_textSplitter",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": true
+  },
+  "versionId": "d0f8dc91-df96-4d23-ad9e-2990c6a5bd2d",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "081b6ad2bd5297f10f998b76d0846c54182ecc27ca12d3a669fae9ef6b117091"
+  },
+  "nodeGroups": [],
+  "id": "OEU0ekSmAn4CTE8W",
+  "tags": []
+}
