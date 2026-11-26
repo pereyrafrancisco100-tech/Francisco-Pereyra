@@ -317,5 +317,3 @@ $$;
 | Me llegó la pizza fría y quiero que me devuelvan la plata | `reclamo`, urgencia alta, ticket en la hoja, mail al equipo, respuesta sin prometer reembolso |
 | Modelo inexistente (falla simulada) | Camino de contingencia: ticket "FALLA TÉCNICA", mail al equipo y disculpa al cliente |
 | Respuesta vacía del agente (simulada) | El IF de validación deriva a contingencia |
-
-> Completar con los resultados reales de cada prueba.
