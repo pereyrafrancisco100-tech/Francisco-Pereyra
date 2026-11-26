@@ -222,7 +222,7 @@ Devolvé únicamente el objeto estructurado pedido (intencion, urgencia, requier
 
 ## 7. Capturas
 
-> Completar con las capturas reales (sin claves ni datos privados visibles) y verificar que cada archivo exista en la carpeta `capturas/`.
+![Hoja de tickets con el caso registrado](capturas/06-hoja-tickets.png)
 
 | Captura | Archivo |
 |---|---|
